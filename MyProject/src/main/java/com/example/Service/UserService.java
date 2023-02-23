@@ -5,10 +5,12 @@ import java.util.List;
 import com.example.pojos.User;
 
 public interface UserService {
-	public User addNewUser(User u);
+	String addNewUser(User u);
 	
-	public List<User> getAllUsers();
+	List<User> getAllUsers();
 	
-	public User getById(Long id);
+	User getById(Long id);
+	
+	User getUser(String em,String pass);
 
 }

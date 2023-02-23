@@ -1,5 +1,7 @@
 package com.example.pojos;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,9 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="users")
@@ -32,19 +33,19 @@ public class User {
 	@Column(name = "email")
 	private String email;
 
-    @JsonIgnore
+    //@JsonIgnore
 	@Column(name = "password")
-	private String pass;
+	private String password;
 	
 	@Column(name = "address")
 	private String address;
 	
-	@ManyToOne                       //users * <----------> * category
+	@ManyToOne                       //users * <----------> 1 category
 	@JoinColumn(name="catid")
 	private UserCategory category;   //many user will have same category
 	
-//	@OneToMany   //single user can have  many courses
-//	private List<Course> courseEnrolled;
+	@OneToMany(mappedBy="user")   
+	private List<Course> courseEnrolled;  //single user can have  many courses  users 1 <-----> * courses
 
 	public User() {
 		super();
@@ -59,7 +60,7 @@ public class User {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
-		this.pass = pass;
+		this.password = pass;
 		this.address = address;
 		this.category = category;
 	}
@@ -105,11 +106,11 @@ public class User {
 	}
 
 	public String getPass() {
-		return pass;
+		return password;
 	}
 
 	public void setPass(String pass) {
-		this.pass = pass;
+		this.password = pass;
 	}
 
 	public String getAddress() {
@@ -131,7 +132,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", userName=" + userName + ", firstName=" + firstName + ", lastName="
-				+ lastName + ", email=" + email + ", pass=" + pass + ", address=" + address + "]";
+				+ lastName + ", email=" + email + ", pass=" + password + ", address=" + address + "]";
 	}
 	
 	

@@ -1,5 +1,8 @@
 package com.example.pojos;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,7 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="courses")
@@ -39,10 +45,21 @@ public class Course {
 	@JoinColumn(name="catid")
 	private CourseCategory category;    //many courses can have same category
 	
-	@ManyToOne           //course * -------> 1 users
+	
+    @JsonIgnore
+	@ManyToOne           
 	@JoinColumn(name="userid")
-	private User user;  //many courses belong to single user(userId)
+	private User user;  //many courses belong to single user(userId)  course * <-------> 1 users
+	
+    @JsonIgnore
+    @OneToMany(mappedBy = "course",cascade=CascadeType.ALL) 
+	private List<Topic> topics;  //course have list of topics  course 1 <-------> * topics
+	
+    @JsonIgnore
+	@OneToMany(mappedBy = "courseid",cascade=CascadeType.ALL)
+	private List<SubTopic> subtopics; //course have list of subtopics  course 1 <-------> * subtopics
 
+	
 	public Course() {
 		super();
 	}
@@ -131,6 +148,22 @@ public class Course {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+	public List<Topic> getTopics() {
+		return topics;
+	}
+
+	public void setTopics(List<Topic> topics) {
+		this.topics = topics;
+	}
+
+	public List<SubTopic> getSubtopics() {
+		return subtopics;
+	}
+
+	public void setSubtopics(List<SubTopic> subtopics) {
+		this.subtopics = subtopics;
 	}
 
 	@Override

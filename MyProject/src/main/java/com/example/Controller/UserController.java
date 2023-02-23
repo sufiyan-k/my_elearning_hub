@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.Service.UserService;
@@ -24,8 +25,8 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@PostMapping
-	public User addUser(@RequestBody User u) {
+	@PostMapping("/register")
+	public String addUser(@RequestBody User u) {
 		return userService.addNewUser(u);
 	}
 	
@@ -38,5 +39,25 @@ public class UserController {
 	public User getById(@PathVariable Long id) {
 		return userService.getById(id);
 	}
+	
+	//login
+	@PostMapping("/login")
+	public User userLogin(@RequestParam String username,@RequestParam String password) {
+		
+		User user=userService.getUser(username, password);
+		
+		if(user!=null) {
+			System.out.println("Welcome");
+			System.out.println(user.toString());
+			return user;
+		}
+		else {
+			System.out.println("invalid user");
+		}
+		return null;
+		
+	}
+	
+	
 
 }

@@ -1,0 +1,6 @@
+insert into users_category values (2,"student"),(3,"instructor");
+
+insert into users values (1,"pune","ssk@gmail","sufiyan","khan","123","sufiyan",1);
+
+insert into course_category values (1,"technology"),(2,"business"),(3,"health"),(4,"languages");
+
