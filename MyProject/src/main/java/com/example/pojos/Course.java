@@ -46,16 +46,16 @@ public class Course {
 	private CourseCategory category;    //many courses can have same category
 	
 	
-    @JsonIgnore
+//    @JsonIgnore     //ignore this prop for ser and des
 	@ManyToOne           
 	@JoinColumn(name="userid")
 	private User user;  //many courses belong to single user(userId)  course * <-------> 1 users
 	
-    @JsonIgnore
+    @JsonIgnore     //ignore this prop for ser and des
     @OneToMany(mappedBy = "course",cascade=CascadeType.ALL) 
 	private List<Topic> topics;  //course have list of topics  course 1 <-------> * topics
 	
-    @JsonIgnore
+    @JsonIgnore    //ignore this prop for ser and des
 	@OneToMany(mappedBy = "courseid",cascade=CascadeType.ALL)
 	private List<SubTopic> subtopics; //course have list of subtopics  course 1 <-------> * subtopics
 

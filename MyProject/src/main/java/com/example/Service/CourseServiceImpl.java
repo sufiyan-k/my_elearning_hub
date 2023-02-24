@@ -1,5 +1,7 @@
 package com.example.Service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,11 @@ public class CourseServiceImpl implements CourseService{
 		 return mesg;
 		 
 	}
+	@Override
+	public List<Course> getAllCourses() {
+		return courseRepo.findAll();
+	}
+	
 	
 
 }

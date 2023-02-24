@@ -41,6 +41,17 @@ public class UserServiceImpl implements UserService{
 		return userRepo.findByUserNameAndPassword(un, pass)
 				.orElseThrow(()-> new ResourceNotFoundException("invalid user"));
 	}
+	@Override
+	public String deleteUserByid(Long id) {
+		
+		if (!userRepo.existsById(id)) {
+			throw new com.example.custom_exceptions.ResourceNotFoundException("User doesnt exist");
+		}
+		userRepo.deleteById(id);
+		return "User with id " + id + " has been deleted successfully";
+	}
+	
+	
 	
 	
 	

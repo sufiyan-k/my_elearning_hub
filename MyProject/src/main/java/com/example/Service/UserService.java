@@ -12,5 +12,7 @@ public interface UserService {
 	User getById(Long id);
 	
 	User getUser(String em,String pass);
+	
+	String deleteUserByid(Long id);
 
 }

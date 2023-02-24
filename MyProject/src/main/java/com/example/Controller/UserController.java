@@ -3,6 +3,7 @@ package com.example.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,22 +31,12 @@ public class UserController {
 		return userService.addNewUser(u);
 	}
 	
-	@GetMapping
-	public List<User> getAllUser() {
-		return userService.getAllUsers();
-	}
-	
-	@GetMapping("/{id}")
-	public User getById(@PathVariable Long id) {
-		return userService.getById(id);
-	}
-	
 	//login
 	@PostMapping("/login")
 	public User userLogin(@RequestParam String username,@RequestParam String password) {
-		
+			
 		User user=userService.getUser(username, password);
-		
+			
 		if(user!=null) {
 			System.out.println("Welcome");
 			System.out.println(user.toString());
@@ -55,8 +46,25 @@ public class UserController {
 			System.out.println("invalid user");
 		}
 		return null;
-		
+			
 	}
+	
+	// =================== ADMIN FUNCTIONALITY =========================
+
+//	--------------- Manage Users --------------------------------
+	
+	@GetMapping("/admin/users")
+	public List<User> getAllUser() {
+		return userService.getAllUsers();
+	}
+	
+	@GetMapping("/{id}")
+	public User getById(@PathVariable Long id) {
+		return userService.getById(id);
+	}
+	
+	//delete
+
 	
 	
 

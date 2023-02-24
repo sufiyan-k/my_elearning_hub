@@ -9,5 +9,6 @@ import com.example.pojos.User;
 public interface UserRepository extends JpaRepository<User, Long> {
 	
 	Optional<User> findByUserNameAndPassword(String em,String pass);
-
+	
+	
 }
