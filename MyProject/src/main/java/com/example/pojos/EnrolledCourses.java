@@ -30,15 +30,18 @@ public class EnrolledCourses {
 	public EnrolledCourses() {
 		super();
 	}
+	
 
-	public EnrolledCourses(Long enrollId, Long sid, String courseTitle, String courseType, Long cId) {
+	public EnrolledCourses(Long enrollId, Long sid, String courseTitle, String courseType, Long cid) {
 		super();
 		this.enrollId = enrollId;
 		this.sid = sid;
 		this.courseTitle = courseTitle;
 		this.courseType = courseType;
-		this.cid = cId;
+		this.cid = cid;
 	}
+
+
 
 	public Long getEnrollId() {
 		return enrollId;
@@ -72,13 +75,15 @@ public class EnrolledCourses {
 		this.courseType = courseType;
 	}
 
-	public Long getcId() {
+	public Long getCid() {
 		return cid;
 	}
 
-	public void setcId(Long cId) {
-		this.cid = cId;
+	public void setCid(Long cid) {
+		this.cid = cid;
 	}
+
+	
 	
 	
 

@@ -29,6 +29,10 @@ public class CourseServiceImpl implements CourseService{
 	public List<Course> getAllCourses() {
 		return courseRepo.findAll();
 	}
+//	@Override
+//	public List<Course> getAllCoursesByCatid(long catid) {
+//		return courseRepo.findByCatid(catid);
+//	}
 	
 	
 
