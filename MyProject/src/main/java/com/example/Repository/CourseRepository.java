@@ -8,11 +8,12 @@ import org.springframework.stereotype.Repository;
 
 import com.example.pojos.Course;
 
-@Repository
 
 public interface CourseRepository extends JpaRepository<Course, Long>{
 	
-//	//@Query(value="select c from Course c where c.category.categoryId=?1")
-//	@Query(value = "SELECT * FROM projectdb.course where course_category_cat_id=?1", nativeQuery = true)
+	@Query(value="select c from Course c where c.category.categoryId=?1", nativeQuery=false)
+	List<Course> getCoursesByCategory(long catid);
+	
+	
 	
 }

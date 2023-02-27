@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.Service.CourseService;
+import com.example.Service.InstructorService;
 import com.example.Service.StudentService;
 import com.example.pojos.Course;
 import com.example.pojos.EnrolledCourses;
@@ -24,7 +24,7 @@ public class StudentController {
 	private StudentService studentService;
 	
 	@Autowired
-	private CourseService courseService;
+	private InstructorService courseService;
 
 	public StudentController() {
 		System.out.println("in student controller");

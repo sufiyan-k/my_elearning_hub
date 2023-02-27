@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name="sub_topics")
@@ -36,11 +38,13 @@ public class SubTopic {
 	@Column(name = "subt_video_path")
 	private String subtVideoPath;
 	
-	
+	@JsonIgnore 
 	@ManyToOne
 	@JoinColumn(name="chapter_id")
 	private Topic chapter;  // many subtopics belongs to one chapter chapter subtopic * <-------> 1 topic
 	
+	
+	@JsonIgnore 
 	@ManyToOne
 	@JoinColumn(name="course_id")
 	private Course courseid; //many subtopics belongs to one course  subtopic * <-------> 1 course
