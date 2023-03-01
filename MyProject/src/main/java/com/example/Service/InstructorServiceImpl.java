@@ -58,10 +58,19 @@ public class InstructorServiceImpl implements InstructorService{
 		return "Subtopic added successfully "+ st.getSubtTitle() ;
 	}
 	
-//	@Override
-//	public Optional<Course> getCoursesByInstid(long instid) {
-//		return courseRepo.findById(instid);
-//	}
+	@Override
+	public List<Course> getCoursesByInstid(long instid) {
+		 return courseRepo.getCoursesByInstructorId(instid);
+	}
+	@Override
+	public List<Topic> getChaptersByCourseid(long cid) {
+		return chapterRepo.getChaptersByCourseid(cid);
+	}
+	
+	@Override
+	public List<SubTopic> getSubTopicByChapterid(long chpid) {
+		return subTopicRepo.getSubtopicsByChapterid(chpid);
+	}
 	
 	
 	

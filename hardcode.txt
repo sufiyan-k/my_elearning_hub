@@ -1,6 +1,15 @@
-insert into users_category values (2,"student"),(3,"instructor");
+insert into users_category values (1,"admin"),(2,"instructor"),(3,"student");
 
 insert into users values (1,"pune","ssk@gmail","sufiyan","khan","123","sufiyan",1);
 
 insert into course_category values (1,"technology"),(2,"business"),(3,"health"),(4,"languages");
 
+insert into courses values(1,"java",100,123,"java","paid",123,1,1);
+
+insert into courses values(2,"dbt",100,123,"dbt","paid",123,1,1);
+
+insert into chapters values(1,"oop",123,1,"123","oop",123,1);
+
+insert into sub_topics values(1,"string",123,1,"123","strings",123,1,1);
+
+insert into sub_topics values(2,"array",123,1,"123","array",123,1,1);

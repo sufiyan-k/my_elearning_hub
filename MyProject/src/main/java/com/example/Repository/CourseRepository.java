@@ -14,6 +14,9 @@ public interface CourseRepository extends JpaRepository<Course, Long>{
 	@Query(value="select c from Course c where c.category.categoryId=?1", nativeQuery=false)
 	List<Course> getCoursesByCategory(long catid);
 	
+	@Query(value="select c from Course c where c.user.userId=?1", nativeQuery=false)
+	List<Course> getCoursesByInstructorId(long instid);
+	
 	
 	
 }

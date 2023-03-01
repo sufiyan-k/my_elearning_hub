@@ -18,6 +18,10 @@ public interface InstructorService {
 	
 	String addNewSubTopic(SubTopic st);
 	
-	//List<Course> getCoursesByInstid(long instid);
+	List<Course> getCoursesByInstid(long instid);
+	
+	List<Topic> getChaptersByCourseid(long cid);
+
+	List<SubTopic> getSubTopicByChapterid(long chpid);
 
 }
