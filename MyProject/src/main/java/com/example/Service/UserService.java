@@ -14,5 +14,11 @@ public interface UserService {
 	User getUser(String em,String pass);
 	
 	String deleteUserByid(Long id);
+	
+	String getUserRoleByUserid(long userid);
+	
+	String getUserIdByUserName(String username);
+
+	String deleteUserByUserid(long userid);
 
 }

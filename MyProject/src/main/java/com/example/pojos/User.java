@@ -34,15 +34,18 @@ public class User {
 	private String email;
 
     //@JsonIgnore
-	@Column(name = "password")
-	private String password;
+	@Column(name = "pass")
+	private String pass;
+	
+	@Column(name = "phone_no")
+	private String phoneNo;
 	
 	@Column(name = "address")
 	private String address;
 	
 	@ManyToOne                       //users * <----------> 1 category
 	@JoinColumn(name="catid")
-	private UserCategory category;   //many user will have same category
+	private Category category;   //many user will have same category
 	
 	@OneToMany(mappedBy="user")   
 	private List<Course> courseEnrolled;  //single user can have  many courses  users 1 <-----> * courses
@@ -51,18 +54,27 @@ public class User {
 		super();
 		System.out.println("in users constructor");
 	}
+	
+	
+	//added this constructor
+	public User(Long userId) {
+		super();
+		this.userId = userId;
+	}
 
 	public User(Long userId, String userName, String firstName, String lastName, String email, String pass,
-			String address, UserCategory category) {
+			String phoneNo, String address, Category category, List<Course> courseEnrolled) {
 		super();
 		this.userId = userId;
 		this.userName = userName;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
-		this.password = pass;
+		this.pass = pass;
+		this.phoneNo = phoneNo;
 		this.address = address;
 		this.category = category;
+		this.courseEnrolled = courseEnrolled;
 	}
 
 	public Long getUserId() {
@@ -106,11 +118,19 @@ public class User {
 	}
 
 	public String getPass() {
-		return password;
+		return pass;
 	}
 
 	public void setPass(String pass) {
-		this.password = pass;
+		this.pass = pass;
+	}
+
+	public String getPhoneNo() {
+		return phoneNo;
+	}
+
+	public void setPhoneNo(String phoneNo) {
+		this.phoneNo = phoneNo;
 	}
 
 	public String getAddress() {
@@ -121,19 +141,31 @@ public class User {
 		this.address = address;
 	}
 
-	public UserCategory getCategory() {
+	public Category getCategory() {
 		return category;
 	}
 
-	public void setCategory(UserCategory category) {
+	public void setCategory(Category category) {
 		this.category = category;
+	}
+
+	public List<Course> getCourseEnrolled() {
+		return courseEnrolled;
+	}
+
+	public void setCourseEnrolled(List<Course> courseEnrolled) {
+		this.courseEnrolled = courseEnrolled;
 	}
 
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", userName=" + userName + ", firstName=" + firstName + ", lastName="
-				+ lastName + ", email=" + email + ", pass=" + password + ", address=" + address + "]";
+				+ lastName + ", email=" + email + ", pass=" + pass + ", phoneNo=" + phoneNo + ", "
+						+ "address=" + address + "]";
 	}
+	
+	
+
 	
 	
 	

@@ -3,6 +3,7 @@ package com.example.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,7 @@ import com.example.pojos.Topic;
 import com.example.pojos.User;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/elearning")
 public class InstructorController {
 	
@@ -34,11 +36,7 @@ public class InstructorController {
 		return instructorService.addNewCourse(newCourse);
 		
 	}
-	@GetMapping("/courselist")
-	public List<Course> getAllCourses(){
-		return instructorService.getAllCourses();
-	}
-	
+
 	//addChapter
 	@PostMapping("/addchapter")
 	public String addChapter(@RequestBody Topic newTopic) {
@@ -53,27 +51,36 @@ public class InstructorController {
 
 	// ======================== GET LISTS========================================
 
-	//get course list by instid
 	@GetMapping("/getcourses")
+	public List<Course> getAllCourses(){
+		return instructorService.getAllCourses();
+	}
+	
+	//get course list by instid
+	@PostMapping("/getcourses")
 	public List<Course> getCoursesByInstructor(@RequestBody User user){
 		return instructorService.getCoursesByInstid(user.getUserId());
 	}
 	
 	//get chapters by courseid
-	@GetMapping("/getchapters/{cid}")
-	public List<Topic> getChaptersByCourse(@RequestParam long cid){
-		//return instructorService.getChaptersByCourseid(course.getCourseId());
-		return instructorService.getChaptersByCourseid(cid);
+	@PostMapping("/getchapters")
+	public List<Topic> getChaptersByCourse(@RequestBody Course course){
+		 return instructorService.getChaptersByCourseid(course.getCourseId());
+		//return instructorService.getChaptersByCourseid(cid);
 
 	}
 	
 	//get subtopics by chapterid
-	@GetMapping("/getsubtopics/{chpid}")
+	@PostMapping("/getsubtopics/{chpid}")
 	public List<SubTopic> getSubTopicsByChapter(@RequestParam long chpid){
 		return instructorService.getSubTopicByChapterid(chpid);
 
 	}
 	
-	
+	// get chapters data for particular course 
+	//to be done later
+	//skip:
+	//instructor revenue
+	//count*
 
 }

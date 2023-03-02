@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public User getUser(String un, String pass) {
 		// TODO Auto-generated method stub
-		return userRepo.findByUserNameAndPassword(un, pass)
+		return userRepo.findByUserNameAndPass(un, pass)
 				.orElseThrow(()-> new ResourceNotFoundException("invalid user"));
 	}
 	@Override
@@ -49,6 +49,25 @@ public class UserServiceImpl implements UserService{
 		}
 		userRepo.deleteById(id);
 		return "User with id " + id + " has been deleted successfully";
+	}
+	@Override
+	public String getUserRoleByUserid(long userid) {
+		return userRepo.getRoleNameByUserid(userid);
+	}
+	@Override
+	public String getUserIdByUserName(String username) {
+		return userRepo.getUserIdByUserName(username);
+	}
+	@Override
+	public String deleteUserByUserid(long userid) {
+		
+		if (!userRepo.existsById(userid)) {
+			throw new com.example.custom_exceptions.ResourceNotFoundException("User is invalid");
+		}
+		 String mesg;
+		 userRepo.deleteById(userid);
+		 mesg="User deleted successfully";
+		 return mesg;
 	}
 	
 	
